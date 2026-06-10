@@ -25,7 +25,7 @@ inline WheelSpeeds inverse_kinematics(const BodyTwist & twist, double wheel_radi
                                       double track_width) {
   const double r = wheel_radius;
   const double l = track_width;
-  return WheelSpeeds{(2.0 * twist.v - twist.w * l) / (2.0 * r),
+  return WheelSpeeds{(2.0 * twist.v + twist.w * l) / (2.0 * r),
                      (2.0 * twist.v + twist.w * l) / (2.0 * r)};
 }
 
