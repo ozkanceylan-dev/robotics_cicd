@@ -35,7 +35,7 @@ double yaw_from_quaternion(double z, double w, double x, double y) {
 class GoToGoalNode : public rclcpp::Node {
  public:
   GoToGoalNode() : rclcpp::Node("otonav_nav") {
-    params_.kp_lin = declare_parameter<double>("kp_lin", 0.8, describe("Linear P gain."));
+    params_.kp_lin = declare_parameter<double>("kp_lin", 0.0, describe("Linear P gain."));
     params_.kp_ang = declare_parameter<double>("kp_ang", 2.0, describe("Angular P gain."));
     params_.v_max = declare_parameter<double>("v_max", 0.6, describe("Max forward speed [m/s]."));
     params_.w_max = declare_parameter<double>("w_max", 1.5, describe("Max yaw rate [rad/s]."));
