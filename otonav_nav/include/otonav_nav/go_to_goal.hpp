@@ -7,11 +7,9 @@
 #include <algorithm>
 #include <cmath>
 
-namespace otonav_nav
-{
+namespace otonav_nav {
 
-struct GoToGoalParams
-{
+struct GoToGoalParams {
   double kp_lin{0.8};
   double kp_ang{2.0};
   double v_max{0.6};
@@ -19,16 +17,14 @@ struct GoToGoalParams
   double goal_tolerance{0.1};
 };
 
-struct VelocityCommand
-{
+struct VelocityCommand {
   double v{0.0};
   double w{0.0};
   bool reached{false};
 };
 
 /// Wrap an angle to [-pi, pi].
-inline double wrap_angle(double a)
-{
+inline double wrap_angle(double a) {
   while (a > M_PI) {
     a -= 2.0 * M_PI;
   }
@@ -40,8 +36,7 @@ inline double wrap_angle(double a)
 
 /// P-control toward a goal. dx,dy = goal minus robot in the world frame; yaw =
 /// robot heading. Turns toward the goal and only drives forward while facing it.
-inline VelocityCommand go_to_goal(double dx, double dy, double yaw, const GoToGoalParams & p)
-{
+inline VelocityCommand go_to_goal(double dx, double dy, double yaw, const GoToGoalParams & p) {
   const double dist = std::hypot(dx, dy);
   if (dist < p.goal_tolerance) {
     return VelocityCommand{0.0, 0.0, true};
